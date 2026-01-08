@@ -180,15 +180,8 @@ public class CustomList {
         return sizeRec(head);
     }
 
-    public boolean contains(Node n){
-        int numero =indexOf(n);
-        if (numero <0)return false;
-        return true;
-    }
 
-    public void set(int index, Node n){
-       Node cursor;
-    }
+
 
     // iterative version of size method
     // public int length() {
@@ -248,6 +241,45 @@ public class CustomList {
         printRec(head);
         System.out.println("]");
     }
+    public void set(int index,Node newNode) throws IndexOutOfBoundsException{
+        if (index <0 || index >= size())
+            throw new IndexOutOfBoundsException("invalid exit");
+        if (newNode == null) return;
 
- 
+        if (index == 0){
+            newNode.setNext(head.getNext());
+            head = newNode;
+            return;
+        }
+
+        Node cursor = get(index-1);
+        newNode.setNext(cursor.getNext().getNext());
+        cursor.setNext(newNode);
+    }
+
+
+    public boolean  contains(Node cercato){
+    boolean trovato = false;
+    Node cursor = head;
+        if (cercato == null)
+            return trovato;
+            while(cursor != null){
+                if(cursor.equals(cercato)){
+                return trovato;
+                }
+                cursor = cursor.getNext();
+            }
+   return trovato;
+        }
+    public boolean containsRec(Node n){
+        return containsRec(head,n);
+        }
+    private boolean containsRec(Node cursor,Node n){
+
+
+        if(cursor == null)return false;
+        if(cursor.equals(n)) return true;
+
+        return containsRec(cursor.getNext(), n);
+    }
 }
