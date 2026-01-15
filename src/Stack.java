@@ -13,21 +13,25 @@ public class Stack {
         return top == null;
     }
 
-    public int head(){
+  //  public int head(){
+   //     if (isEmpty()) throw new NullPointerException();
 
-    }
+    //    return top.getData;
 
-    public Node push(Node newNode){
-        Node cursore;
-        cursore = 
+   // }
+
+    public void push(Node newNode){
         newNode.setNext(top);
+        this.top = newNode;
     }
 
     public Node pop(){
-        Node cursor;
-        cursor 
+        Node cursor = this.top;
+        
         //cambio il riferimento
         top = top.getNext();
         //rimuovere il riferimento di prima 
+        cursor.setNext(null);
+        return cursor;
     }
 }
